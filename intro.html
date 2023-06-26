@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Introducción a Vue.js</title>
+  </head>
+  <body>
+    <div id="firstForm">{{ saludo }}</div>
+
+    <div id="secondForm"></div>
+
+    <div id="thirdForm"></div>
+
+    <script>
+      const { createApp } = Vue;
+
+      const firstForm = createApp({
+        data() {
+          return {
+            saludo: "Hola chicos, soy Juancho!",
+          };
+        },
+      }).mount("#firstForm");
+
+      const secondForm = createApp({
+        data() {
+          return {
+            saludo: "Esta es la otra forma de invocarme!",
+          };
+        },
+        template: "<h1> {{ saludo }} </h1>",
+      }).mount("#secondForm");
+
+      const thirdForm = createApp({
+        data() {
+          return {
+            saludo: "Esta es la tercera forma de invorcarme",
+          };
+        },
+        template: `<h4 v-text="saludo"></h4>`
+      }).mount("#thirdForm");
+    </script>
+  </body>
+</html>
