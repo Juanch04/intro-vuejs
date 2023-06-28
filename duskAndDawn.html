@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/duskAndDawn.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div width="" id="app"></div>
+
+    <script>
+      const { createApp } = Vue;
+
+      const myApp = createApp({
+        data() {
+          return {
+            stateDay: true, // true = sun || false = night
+            image: "./images/sun.jpg",
+            styles: {
+              backgroundColor: "#faefce",
+            },
+          };
+        },
+        watch: {
+          stateDay() {
+            if (this.stateDay) {
+              this.styles.backgroundColor = "#faefce";
+              this.image = "./images/sun.jpg";
+            } else {
+              this.styles.backgroundColor = "#01325d";
+              this.image = "./images/moon.jpg";
+            }
+          },
+        },
+        computed: {
+          labelButton() {
+            return this.stateDay ? "Anochecer" : "Madrugada";
+          },
+        },
+        template: `
+        <div class="container" :style="styles">
+            <img :src="image">
+            <button class="btn-clean" @:click="stateDay = !stateDay">{{ labelButton }}</button>
+        </div>
+        `,
+      }).mount("#app");
+    </script>
+  </body>
+</html>
