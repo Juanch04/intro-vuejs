@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/duskAndDawn.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/duskAndDawn.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <title>Document</title>
+    <title>Dusk and Dawn</title>
   </head>
   <body>
-    <div width="" id="app"></div>
+    <div id="app"></div>
 
     <script>
       const { createApp } = Vue;
@@ -22,33 +22,42 @@
       const myApp = createApp({
         data() {
           return {
-            stateDay: true, // true = sun || false = night
+            stateDay: true, // true = sun and false = moon
             image: "./images/sun.jpg",
             styles: {
-              backgroundColor: "#faefce",
+              backgroundColor: "#fceed1",
+            },
+            stylesMessage: {
+              color: "#000",
             },
           };
         },
         watch: {
-          stateDay() {
-            if (this.stateDay) {
-              this.styles.backgroundColor = "#faefce";
+          stateDay(newValue) {
+            if (newValue) {
               this.image = "./images/sun.jpg";
+              this.styles.backgroundColor = "#fceed1";
+              this.stylesMessage.color = "#000";
             } else {
-              this.styles.backgroundColor = "#01325d";
               this.image = "./images/moon.jpg";
+              this.styles.backgroundColor = "#01325d";
+              this.stylesMessage.color = "#fff";
             }
           },
         },
         computed: {
-          labelButton() {
-            return this.stateDay ? "Anochecer" : "Madrugada";
+          labelButtonText() {
+            return this.stateDay ? "Anochecer" : "Amanecer";
+          },
+          labelStateDayText() {
+            return this.stateDay ? "Buenos días!" : "Buenas noches!";
           },
         },
         template: `
         <div class="container" :style="styles">
             <img :src="image">
-            <button class="btn-clean" @:click="stateDay = !stateDay">{{ labelButton }}</button>
+            <p :style="stylesMessage">{{ labelStateDayText }}</p>
+            <button @click="stateDay = !stateDay">{{ labelButtonText }}</button>
         </div>
         `,
       }).mount("#app");

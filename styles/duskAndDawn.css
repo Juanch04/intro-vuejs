@@ -9,21 +9,25 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  transition: all 250ms;
+  transition: all 300ms;
 }
 
 .container img {
   width: 150px;
-  border-radius: 99999px;
+  border-radius: 9999px;
 }
 
-.btn-clean {
-  background: #fff;
+.container button {
   border: none;
   border-radius: 9999px;
-  padding: 0.5rem 2rem;
-  margin-top: 1rem;
-  cursor: pointer;
-  transition: all 250ms;
+  background-color: #fff;
   min-width: 150px;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 300ms;
+}
+
+.container button:hover {
+  transform: scale(1.1);
 }
