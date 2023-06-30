@@ -24,25 +24,11 @@
           return {
             stateDay: true, // true = sun and false = moon
             image: "./images/sun.jpg",
-            styles: {
-              backgroundColor: "#fceed1",
-            },
-            stylesMessage: {
-              color: "#000",
-            },
           };
         },
         watch: {
           stateDay(newValue) {
-            if (newValue) {
-              this.image = "./images/sun.jpg";
-              this.styles.backgroundColor = "#fceed1";
-              this.stylesMessage.color = "#000";
-            } else {
-              this.image = "./images/moon.jpg";
-              this.styles.backgroundColor = "#01325d";
-              this.stylesMessage.color = "#fff";
-            }
+            this.image = newValue ? "./images/sun.jpg" : "./images/moon.jpg";
           },
         },
         computed: {
@@ -54,7 +40,7 @@
           },
         },
         template: `
-        <div class="container" :style="styles">
+        <div class="container" :class="{ sun: stateDay, moon: !stateDay }">
             <img :src="image">
             <p :style="stylesMessage">{{ labelStateDayText }}</p>
             <button @click="stateDay = !stateDay">{{ labelButtonText }}</button>

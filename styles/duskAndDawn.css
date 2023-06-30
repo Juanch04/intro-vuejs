@@ -12,6 +12,22 @@
   transition: all 300ms;
 }
 
+.container.sun {
+  background-color: #fceed1;
+}
+
+.container.sun p {
+  color: #000;
+}
+
+.container.moon {
+  background-color: #01325d;
+}
+
+.container.moon p {
+  color: #fff;
+}
+
 .container img {
   width: 150px;
   border-radius: 9999px;
